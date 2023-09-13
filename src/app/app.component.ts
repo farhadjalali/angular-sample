@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mina-web';
+  employer = undefined;
+
+  ngOnInit() {
+    console.log('app.component.ts ngOnInit()');
+  }
 }
