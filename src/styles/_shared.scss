@@ -1,0 +1,46 @@
+/*
+  Shared stylings between different components
+*/
+
+#root {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    padding: 6rem 2rem;
+    max-width: $media-l;
+    margin: 0 auto;
+    box-sizing: border-box;
+  
+    @media screen and (max-width: $media-s) {
+      padding: 2rem 0.5rem;
+    }
+  }
+  
+  .buttons-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 2rem 0;
+  
+    button {
+      min-width: 75px;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      border: none;
+      background-color: $gray500;
+      color: $white;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+  
+      &:hover {
+        background-color: $gray100;
+      }
+  
+      &.primary {
+        background-color: $primary;
+      }
+    }
+  }
+  
