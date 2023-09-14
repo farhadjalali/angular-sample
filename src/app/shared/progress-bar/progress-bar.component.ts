@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 @Component({
-  selector: 'app-progress-bar',
-  templateUrl: './progress-bar.component.html'
+  selector: 'progress-bar',
+  templateUrl: './progress-bar.component.html',
+  styleUrls: ['./progress-bar.component.scss']
 })
-export class ProgressBarComponent implements OnInit {
-  constructor() {}
+export class ProgressBarComponent {
+  @Input() progress: number = 0
 
-  ngOnInit() {}
+  // Hide the progress bar when it's 100%
+  opacity = this.progress === 100 ? 0 : 1
 }

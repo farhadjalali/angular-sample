@@ -1,3 +1,28 @@
-<p>
-  relation-list works!
-</p>
+<div class="relation-list">
+  <progress-bar [progress]="50" />
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let relation of relations">
+        <td>{{ relation.name }}</td>
+        <td>{{ relation.surname }}</td>
+        <td>{{ relation.gender }}</td>
+        <td>{{ relation.age }}</td>
+        <td>{{ relation.phone }}</td>
+        <td>{{ relation.email }}</td>
+        <td>{{ relation.address }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

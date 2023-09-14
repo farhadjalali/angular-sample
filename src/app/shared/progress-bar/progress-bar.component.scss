@@ -1,0 +1,21 @@
+@import 'src/styles';
+
+.progress-bar {
+  height: 8px;
+  background-color: transparent;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  div {
+    height: 100%;
+    background-color: $primary;
+    width: 0;
+    transition:
+      width 0.3s linear,
+      opacity 2s ease-out;
+  }
+}

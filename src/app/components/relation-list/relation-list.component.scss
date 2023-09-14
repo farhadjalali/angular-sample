@@ -1,0 +1,28 @@
+@import 'src/styles';
+
+.relation-list {
+  table {
+    border-spacing: 2px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+
+    thead {
+      background-color: $primary;
+    }
+
+    tbody {
+      tr:hover {
+        background-color: #444;
+      }
+    }
+
+    td,
+    th {
+      color: white;
+      font-weight: 300;
+      padding: 0.5rem 1rem;
+      white-space: nowrap;
+    }
+  }
+}
