@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, type Routes } from '@angular/router'
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component'
+import { NotFoundComponent } from './components/not-found/not-found.component'
+import { RelationComponent } from './modules/relation/relation.component'
+import { RelationsComponent } from './modules/relations/relations.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'relation/:id', component: RelationComponent },
+  { path: 'relations', component: RelationsComponent },
+  { path: '', redirectTo: '/relations', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent }
 ]
 
 @NgModule({

@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `<router-outlet></router-outlet>`
 })
 export class AppComponent {
-  title = 'mina-web';
-  employer = undefined;
+  title = 'mina-web'
+  employer = undefined
 
   ngOnInit() {
-    console.log('app.component.ts ngOnInit()');
+    console.log('app.component.ts ngOnInit()')
   }
 }
