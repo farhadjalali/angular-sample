@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
-import { RelationsService } from 'src/app/modules/relations/relations.service'
-import { Relation } from 'src/app/modules/relations/relations.types'
+import { Relation, RelationsService } from 'src/services/relations'
 
 @Component({
   selector: 'relation-list',

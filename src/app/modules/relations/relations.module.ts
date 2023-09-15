@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { RelationListComponent } from 'src/app/components/relation-list'
 import { SharedModule } from 'src/app/shared/shared.module'
-import { RelationListComponent } from '../../components/relation-list'
+import { RelationsService } from 'src/services/relations'
 import { RelationsComponent } from './relations.component'
-import { RelationsService } from './relations.service'
 
 @NgModule({
   imports: [SharedModule, CommonModule],
