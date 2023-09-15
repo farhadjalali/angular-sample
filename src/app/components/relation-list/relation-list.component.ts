@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 import { Relation, RelationsService } from 'src/services/relations'
 
 @Component({
@@ -8,13 +9,18 @@ import { Relation, RelationsService } from 'src/services/relations'
 })
 export class RelationListComponent {
   relations: Relation[] = []
-  progress: number = 0
+  progress = { value: 0 }
 
-  constructor(service: RelationsService) {
-    service.loadRelationObserver$().subscribe((partialLoadItem) => {
-      this.relations.push(partialLoadItem.item)
-      this.progress =
-        ((partialLoadItem.index + 1) / partialLoadItem.total) * 100
-    })
+  constructor(
+    private router: Router,
+    service: RelationsService
+  ) {
+    service.initializeRelations()
+    this.relations = service.relations
+    this.progress = service.progress
+  }
+
+  navigateRelation(relation: Relation) {
+    this.router.navigate([`/relation/${relation.id}`])
   }
 }

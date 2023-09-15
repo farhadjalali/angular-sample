@@ -1,3 +1,17 @@
-<p>
-  card-element works!
-</p>
+<div class="card-field">
+  <label>{{ label }}</label>
+  <input
+    *ngIf="editMode"
+    [class.width-error]="hasError"
+    autoFocus
+    (blue)="editMode = false"
+    type="text"
+    name="name"
+    value="value"
+    (keydown)="handleKeyDown($event)"
+    (change)="handleInputChange($event)"
+  />
+  <div *ngIf="!editMode" className="card-text" (click)="editMode = true">
+    {{ defaultValue }}
+  </div>
+</div>

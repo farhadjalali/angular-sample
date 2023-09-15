@@ -1,5 +1,5 @@
 <div class="relation-list">
-  <progress-bar [progress]="progress" />
+  <progress-bar [progress]="progress.value" />
 
   <table>
     <thead>
@@ -14,7 +14,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let relation of relations">
+      <tr
+        *ngFor="let relation of relations"
+        (click)="navigateRelation(relation)"
+      >
         <td>{{ relation.name }}</td>
         <td>{{ relation.surname }}</td>
         <td>{{ relation.gender }}</td>

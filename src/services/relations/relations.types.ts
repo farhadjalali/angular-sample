@@ -9,8 +9,3 @@ export type Relation = {
   address?: string
 }
 
-export type PartialLoadItem<T> = {
-  item: T
-  index: number
-  total: number
-}
