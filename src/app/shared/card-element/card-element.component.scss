@@ -35,7 +35,7 @@
     border: 1px solid $gray300;
 
     &.with-error {
-      background-color: $red800;
+      background-color: $red800 !important;
     }
   }
 }

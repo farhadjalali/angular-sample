@@ -2,16 +2,18 @@
   <label>{{ label }}</label>
   <input
     *ngIf="editMode"
-    [class.width-error]="hasError"
-    autoFocus
-    (blue)="editMode = false"
+    [class.with-error]="hasError"
+    (blur)="editMode = false"
+    autofocus
     type="text"
     name="name"
-    value="value"
-    (keydown)="handleKeyDown($event)"
-    (change)="handleInputChange($event)"
+    [value]="value"
+    #input
+    (keyup)="handleInputChange(input.value)"
+    (keyup.enter)="handleChange(input.value)"
+    (keyup.escape)="handleReset()"
   />
-  <div *ngIf="!editMode" className="card-text" (click)="editMode = true">
-    {{ defaultValue }}
+  <div *ngIf="!editMode" class="card-text" (click)="editMode = true">
+    {{ value }}
   </div>
 </div>

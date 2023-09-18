@@ -18,8 +18,8 @@ export class RelationsService {
       validation: ['male', 'female', 'other']
     },
     { name: 'age', label: 'Age', validation: null },
-    { name: 'phone', label: 'Phone', validation: null },
-    { name: 'email', label: 'Email', validation: null },
+    { name: 'phone', label: 'Phone', validation: /^\d{3}-\d{3}-\d{4}$/ },
+    { name: 'email', label: 'Email', validation: /^[\w\.-]+@[\w-]+\.\w+$/ },
     { name: 'address', label: 'Address', validation: null }
   ]
 
