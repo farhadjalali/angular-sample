@@ -1,7 +1,9 @@
-<div class="relation-card">
+<form class="relation-card">
   <div class="relation-card-head">
     <div class="relation-card-back-button" (click)="goBack()">&#65513;</div>
-    <h1 *ngIf="relation">{{ [relation.name, relation.surname].join(' ') }}</h1>
+    <h1 *ngIf="relation">
+      {{ [relation.name, relation.surname].join(' ') | uppercase }}
+    </h1>
   </div>
 
   <card-element
@@ -9,7 +11,8 @@
     [name]="element.name"
     [label]="element.label"
     [defaultValue]="getDefaultElementValue(element.name)"
-    [validation]="element.validation"
+    [required]="element.required"
+    [pattern]="element.pattern"
     (change)="(onFieldChanged)"
   />
-</div>
+</form>

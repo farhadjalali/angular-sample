@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 
-type CardElementChange = {
+type CardElementChangeEventArgs = {
   name: string
   newValue: string | undefined
 }
@@ -13,20 +13,20 @@ type CardElementChange = {
 export class CardElementComponent {
   @Input() name = ''
   @Input() label = ''
-  @Input() validation: RegExp | string[] | null | undefined = null
+  @Input() required: boolean | undefined = false
+  @Input() pattern: string | undefined = ''
   @Input() defaultValue: string | undefined = ''
-  @Output() change = new EventEmitter<CardElementChange>()
+  @Output('change') change = new EventEmitter<CardElementChangeEventArgs>()
 
   value = ''
   editMode = false
-  hasError = false
 
   ngOnChanges() {
     this.value = this.defaultValue || ''
   }
 
-  handleChange(newValue: string) {
-    if (!this.hasError) {
+  onPressEnter(newValue: string, errors: any) {
+    if (!errors) {
       this.editMode = false
       this.value = newValue
       this.change.emit({ newValue: this.value, name: this.name })
@@ -35,18 +35,5 @@ export class CardElementComponent {
 
   handleReset() {
     this.editMode = false
-  }
-
-  handleInputChange(value: string) {
-    console.log('handleInputChange', value, this.validation)
-    if (this.validation) {
-      let valid = true
-      if (this.validation instanceof RegExp) {
-        valid = this.validation.test(value)
-      } else if (Array.isArray(this.validation)) {
-        valid = this.validation.includes(value)
-      }
-      this.hasError = !valid
-    }
   }
 }

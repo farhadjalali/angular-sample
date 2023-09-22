@@ -34,8 +34,8 @@
     color: white;
     border: 1px solid $gray300;
 
-    &.with-error {
-      background-color: $red800 !important;
+    &.ng-invalid {
+      background-color: red;
     }
   }
 }

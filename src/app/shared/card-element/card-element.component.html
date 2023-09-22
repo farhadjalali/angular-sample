@@ -1,19 +1,25 @@
 <div class="card-field">
   <label>{{ label }}</label>
+  <ng-container *ngIf="editMode; then editBlock; else viewBlock"></ng-container>
+</div>
+
+<ng-template #editBlock>
   <input
-    *ngIf="editMode"
-    [class.with-error]="hasError"
+    [(ngModel)]="value"
     (blur)="editMode = false"
     autofocus
+    [required]="required || false"
+    [pattern]="pattern || ''"
     type="text"
-    name="name"
-    [value]="value"
-    #input
-    (keyup)="handleInputChange(input.value)"
-    (keyup.enter)="handleChange(input.value)"
+    [name]="name"
+    #input="ngModel"
+    (keyup.enter)="onPressEnter(input.control.value, input.control.errors)"
     (keyup.escape)="handleReset()"
   />
-  <div *ngIf="!editMode" class="card-text" (click)="editMode = true">
+</ng-template>
+
+<ng-template #viewBlock>
+  <div class="card-text" (click)="editMode = true">
     {{ value }}
   </div>
-</div>
+</ng-template>

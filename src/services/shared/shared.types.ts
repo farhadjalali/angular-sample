@@ -7,5 +7,6 @@ export type PartialLoadItem<T> = {
 export type CardElementSchema = {
   name: string
   label: string
-  validation?: RegExp | string[] | null
+  required?: boolean
+  pattern?: string
 }

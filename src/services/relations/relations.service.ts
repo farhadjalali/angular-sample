@@ -10,17 +10,17 @@ export class RelationsService {
   relations: Relation[] = []
   progress = { value: 0 }
   relationElements: CardElementSchema[] = [
-    { name: 'name', label: 'Name', validation: null },
-    { name: 'surname', label: 'Surname', validation: null },
+    { name: 'name', label: 'Name', required: true },
+    { name: 'surname', label: 'Surname' },
     {
       name: 'gender',
       label: 'Gender',
-      validation: ['male', 'female', 'other']
+      required: true
     },
-    { name: 'age', label: 'Age', validation: null },
-    { name: 'phone', label: 'Phone', validation: /^\d{3}-\d{3}-\d{4}$/ },
-    { name: 'email', label: 'Email', validation: /^[\w\.-]+@[\w-]+\.\w+$/ },
-    { name: 'address', label: 'Address', validation: null }
+    { name: 'age', label: 'Age' },
+    { name: 'phone', label: 'Phone', pattern: '^\\d+-\\d+-\\d+\\$' },
+    { name: 'email', label: 'Email', pattern: '^[\\w.-]+@[\\w-]+.\\w+\\$' },
+    { name: 'address', label: 'Address' }
   ]
 
   constructor(private http: HttpClient) {}
