@@ -15,7 +15,6 @@ export class RelationListComponent {
     private router: Router,
     service: RelationsService
   ) {
-    service.initializeRelations()
     this.relations = service.relations
     this.progress = service.progress
   }

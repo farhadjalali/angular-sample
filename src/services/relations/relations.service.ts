@@ -23,7 +23,9 @@ export class RelationsService {
     { name: 'address', label: 'Address' }
   ]
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.initializeRelations()
+  }
 
   private loadRelationObserver$() {
     return new Observable<PartialLoadItem<Relation>>((subscriber) => {
