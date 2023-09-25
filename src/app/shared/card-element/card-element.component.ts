@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core'
+import { FormGroup } from '@angular/forms'
 
 type CardElementChangeEventArgs = {
   name: string
@@ -10,19 +18,23 @@ type CardElementChangeEventArgs = {
   templateUrl: './card-element.component.html',
   styleUrls: ['./card-element.component.scss']
 })
-export class CardElementComponent {
+export class CardElementComponent implements OnChanges {
+  @Input() formGroup!: FormGroup
   @Input() name = ''
   @Input() label = ''
-  @Input() required: boolean | undefined = false
-  @Input() pattern: string | undefined = ''
-  @Input() defaultValue: string | undefined = ''
   @Output('change') change = new EventEmitter<CardElementChangeEventArgs>()
 
-  value = ''
   editMode = false
+  value = this.controlValue
 
-  ngOnChanges() {
-    this.value = this.defaultValue || ''
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['formGroup']) {
+      this.value = this.controlValue
+    }
+  }
+
+  get controlValue() {
+    return this.formGroup?.get(this.name)!.value
   }
 
   onPressEnter(newValue: string, errors: any) {

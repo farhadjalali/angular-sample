@@ -1,4 +1,4 @@
-<form class="relation-card">
+<div class="relation-card" [formGroup]="form">
   <div class="relation-card-head">
     <div class="relation-card-back-button" (click)="goBack()">&#65513;</div>
     <h1 *ngIf="relation">
@@ -10,9 +10,7 @@
     *ngFor="let element of elements"
     [name]="element.name"
     [label]="element.label"
-    [defaultValue]="getDefaultElementValue(element.name)"
-    [required]="element.required"
-    [pattern]="element.pattern"
+    [formGroup]="form"
     (change)="(onFieldChanged)"
   />
-</form>
+</div>

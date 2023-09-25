@@ -1,19 +1,14 @@
-<div class="card-field">
+<div class="card-field" [formGroup]="formGroup">
   <label>{{ label }}</label>
   <ng-container *ngIf="editMode; then editBlock; else viewBlock"></ng-container>
 </div>
 
 <ng-template #editBlock>
   <input
-    [(ngModel)]="value"
     (blur)="editMode = false"
     autofocus
-    [required]="required || false"
-    [pattern]="pattern || ''"
     type="text"
-    [name]="name"
-    #input="ngModel"
-    (keyup.enter)="onPressEnter(input.control.value, input.control.errors)"
+    [formControlName]="name"
     (keyup.escape)="handleReset()"
   />
 </ng-template>
