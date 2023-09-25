@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core'
 import { Relation } from './relations.types'
 
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
+import { Observable, shareReplay } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { CardElementSchema, PartialLoadItem } from '../shared'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RelationsService {
   relations: Relation[] = []
   progress = { value: 0 }
@@ -27,26 +30,29 @@ export class RelationsService {
     this.initializeRelations()
   }
 
-  private loadRelationObserver$() {
+  loadRelationObserver$() {
     return new Observable<PartialLoadItem<Relation>>((subscriber) => {
-      this.http.get('assets/sample.json').subscribe((data: any) => {
-        // Mocking the loading of the relations
-        let index = 0
-        const itemLoadSimulatedDelay = 200 // ms
-        const interval = setInterval(() => {
-          if (index === data.length) {
-            clearInterval(interval)
-            return subscriber.complete()
-          }
+      this.http
+        .get('assets/sample.json')
+        .pipe(shareReplay())
+        .subscribe((data: any) => {
+          // Mocking the loading of the relations
+          let index = 0
+          const itemLoadSimulatedDelay = 200 // ms
+          const interval = setInterval(() => {
+            if (index === data.length) {
+              clearInterval(interval)
+              return subscriber.complete()
+            }
 
-          subscriber.next({
-            item: data[index] as Relation,
-            index,
-            total: data.length
-          })
-          index++
-        }, itemLoadSimulatedDelay)
-      })
+            subscriber.next({
+              item: data[index] as Relation,
+              index,
+              total: data.length
+            })
+            index++
+          }, itemLoadSimulatedDelay)
+        })
     })
   }
 
@@ -58,7 +64,17 @@ export class RelationsService {
     })
   }
 
-  getRelation(id: string): Relation | undefined {
+  getRelations$() {
+    return this.http.get<Relation[]>('assets/sample.json').pipe(shareReplay())
+  }
+
+  getRelation$(id: string) {
+    return this.getRelations$().pipe(
+      map((relations) => relations.find((relation) => relation.id === id))
+    )
+  }
+
+  getRelation(id: string) {
     return this.relations.find((relation) => relation.id === id)
   }
 }

@@ -10,6 +10,7 @@
     *ngFor="let element of elements"
     [name]="element.name"
     [label]="element.label"
+    [id]="relation.id"
     [formGroup]="form"
     (change)="(onFieldChanged)"
   />

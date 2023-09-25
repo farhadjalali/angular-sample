@@ -1,25 +1,25 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Relation, RelationsService } from 'src/services/relations'
+import { RelationsService } from 'src/services/relations'
 
 @Component({
   selector: 'relation-list',
   templateUrl: './relation-list.component.html',
   styleUrls: ['./relation-list.component.scss']
 })
-export class RelationListComponent {
-  relations: Relation[] = []
-  progress = { value: 0 }
-
+export class RelationListComponent implements OnInit {
   constructor(
     private router: Router,
-    service: RelationsService
-  ) {
-    this.relations = service.relations
-    this.progress = service.progress
+    private service: RelationsService
+  ) {}
+
+  ngOnInit(): void {}
+
+  get relations() {
+    return this.service.relations
   }
 
-  navigateRelation(relation: Relation) {
-    this.router.navigate([`/relation/${relation.id}`])
+  get progress() {
+    return this.service.progress
   }
 }

@@ -16,7 +16,7 @@
     <tbody>
       <tr
         *ngFor="let relation of relations"
-        (click)="navigateRelation(relation)"
+        [routerLink]="['/relation', relation.id]"
       >
         <td>{{ relation.name }}</td>
         <td>{{ relation.surname }}</td>
